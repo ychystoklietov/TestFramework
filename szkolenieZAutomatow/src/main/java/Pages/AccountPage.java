@@ -12,13 +12,14 @@ public class AccountPage {
     }
 
     //Entry information locator
-    By submitAccountLogin = By.xpath("//p[@class=\"info-account\"]");
+    By submitAccountLogin = By.className("login");
 
     //Method to get info about entry
     public String getSubmitAccountLogin() {
         String submitData = driver.findElement(submitAccountLogin).getText();
         return submitData;
     }
+
 
 
 
