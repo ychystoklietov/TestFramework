@@ -5,16 +5,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class HomePage {
-
-    WebDriver driver;
+public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
+    //Page variables
+    String baseURL = "http://www.automationpractice.pl/index.php";
+
     //Locator for login button
-    By loginBtn = By.xpath("//a[@class=\"login\"]");
+    By loginBtn = By.className("login");
+
+    //Open link
+    public void openURL() {
+        driver.get(baseURL);
+    }
 
     //Method to click login button
     public void clickLogin() {

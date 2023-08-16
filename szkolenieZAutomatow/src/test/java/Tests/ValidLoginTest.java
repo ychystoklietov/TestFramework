@@ -9,17 +9,12 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-@Test
-public class ValidLoginTest {
 
-    public static void main(String[] args) {
+public class ValidLoginTest extends BaseTest {
 
+    @Test
+    public void validLoginTest1() {
         String expectedResult = "Welcome to your account. Here you can manage all of your personal information and orders.";
-
-        System.setProperty("webdriver.chrome.driver", "C:\\webdrivers\\chromedriver.exe");
-        ChromeDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.get("http://www.automationpractice.pl/index.php");
 
         HomePage home = new HomePage(driver);
 
@@ -27,13 +22,15 @@ public class ValidLoginTest {
 
         AccountPage account = new AccountPage(driver);
 
+        home.openURL();
         home.clickLogin();
 
         login.enterUsingEmail("test@mail.com");
         login.enterPassword("Qwerty123");
         login.clickLoginBtn();
         Assert.assertEquals(account.getSubmitAccountLogin(), expectedResult);
-        driver.quit();
-
     }
+
+
+
 }

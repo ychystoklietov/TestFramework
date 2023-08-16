@@ -9,30 +9,24 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-@Test
-public class InvalidLoginTest {
+public class InvalidLoginTest extends BaseTest {
 
-    public static void main(String[] args) {
-
+    @Test
+    public void invalidLoginTest1() {
         String expectedResult = "Authentication failed.";
 
-        System.setProperty("webdriver.chrome.driver", "C:\\webdrivers\\chromedriver.exe");
-        ChromeDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.get("http://www.automationpractice.pl/index.php");
-
         HomePage home = new HomePage(driver);
-
         LoginPage login = new LoginPage(driver);
-
         AccountPage account = new AccountPage(driver);
 
+        home.openURL();
         home.clickLogin();
         login.enterUsingEmail("asdsa@mail.com");
         login.enterPassword("asdsadasd");
         login.clickLoginBtn();
         Assert.assertEquals(login.getErrorDataMessage(), expectedResult);
-        driver.quit();
-
     }
+
+
+
 }
